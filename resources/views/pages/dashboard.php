@@ -9,7 +9,7 @@
 	<div class="ui basic segment">
 		<?php if($projects->count() == 0) : ?>
 		<p>Je hebt nog geen projecten. Wil je er een aanmaken?</p>
-		<a href="#" class="ui primary labeled icon button">
+		<a href="<?php print action('ProjectController@getCreate');?>" class="ui primary labeled icon button">
 			<i class="plus icon"></i>
 			Project aanmaken
 		</a> <!-- /.ui /.primary /.labeled /.icon /.button -->
