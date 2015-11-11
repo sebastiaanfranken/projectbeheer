@@ -1,0 +1,27 @@
+.ui.vertical.stripe {
+	padding: 8em 0;
+}
+
+.quote.stripe.segment {
+	padding: 0;
+}
+
+.quote.stripe.segment .grid .column {
+	padding-top: 5em;
+	padding-bottom: 5em;
+}
+
+@media all and (min-width: 768px) {
+	.ui.extra.huge.header {
+		font-size: 4em;
+	}
+
+	.ui.extra.huge.header > .icon {
+		font-size: 1em;
+	}
+
+	.ui.session.message {
+		margin: 40px auto;
+		width: 420px;
+	}
+}
