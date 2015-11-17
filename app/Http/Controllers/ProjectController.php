@@ -93,21 +93,93 @@ class ProjectController extends Controller
 
 	public function getUpdate($id)
 	{
+		$project = Project::find($id);
+
+		$subdata = [
+			'project' => $project,
+			'start_date' => (new DateTime($project->start_date))->format('d-m-Y'),
+			'end_date' => !is_null($project->end_date) ? (new DateTime($project->end_date))->format('d-m-Y') : null,
+		];
+
+		$data = [
+			'subtitle' => sprintf('Project %s bewerken', $project->name),
+			'content' => view('projects/update', $subdata)
+		];
+
+		return view('partials/layout', $data);
 	}
 
 	public function postUpdate(Request $request)
 	{
+		$this->validate($request, [
+			'name' => ['required'],
+			'start_date' => ['required', 'date', 'date_format:d-m-Y'],
+			'end_date' => ['date', 'date_format:d-m-Y'],
+			'description' => ['string']
+		]);
+
+		/*
+		 * Create a new project and assign all the table columns with the correct values
+		 */
+		$project = Project::find($request->input('id'));
+		$project->name = $request->input('name');
+		$project->user_id = Auth::user()->id;
+		$project->start_date = (new DateTime($request->input('start_date')))->format('Y-m-d');
+
+		if($request->has('end_date'))
+		{
+			$project->end_date = (new DateTime($request->input('end_date')))->format('Y-m-d');
+		}
+
+		if($request->has('description'))
+		{
+			$project->description = $request->input('description');
+		}
+
+		$project->save();
+
+		return redirect()->action('ProjectController@getIndex')->with([
+			'message' => sprintf('Je project <em>%s</em> is opgeslagen', $request->input('name')),
+			'messageType' => 'success'
+		]);
 	}
 
 	public function getDelete($id)
 	{
+		$subdata = [
+			'project' => Project::find($id)
+		];
+
+		$data = [
+			'subtitle' => 'Project verwijderen',
+			'content' => view('projects/delete', $subdata)
+		];
+
+		return view('partials/layout', $data);
 	}
 
 	public function postDelete(Request $request)
 	{
+		$project = Project::find($request->input('id'));
+		Project::destroy($project->id);
+
+		return redirect()->action('ProjectController@getIndex')->with([
+			'message' => sprintf('Het project <em>%s</em> is verwijderd', $project->name),
+			'messageType' => 'success'
+		]);
 	}
 
 	public function getDetails($id)
 	{
+		$subdata = [
+			'project' => Project::find($id)
+		];
+
+		$data = [
+			'subtitle' => 'Project bekijken',
+			'content' => view('projects/details', $subdata)
+		];
+
+		return view('partials/layout', $data);
 	}
 }

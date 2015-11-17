@@ -1,9 +1,6 @@
 <div class="ui very padded basic segment container">
 	<?php if($projects->count() > 0) : ?>
-		<h1 class="ui dividing header">
-			Projecten
-			<a class="ui right floated primary tiny button"><i class="plus icon"></i> Toevoegen</a>
-		</h1> <!-- /.ui /.dividing /.header -->
+		<h1 class="ui dividing header">Projecten</h1>
 
 		<table class="ui striped table">
 			<thead>
@@ -31,20 +28,21 @@
 						<?php print $project->description;?>
 					</td>
 					<td>
-						<a class="ui tiny labeled icon button" href="<?php print action('ProjectController@getDetails', [$project->id]);?>">
+						<a class="ui right floated tiny labeled icon button" href="<?php print action('ProjectController@getDetails', [$project->id]);?>">
 							<i class="search icon"></i>
 							Details
-						</a> <!-- /.ui /.tiny /.labeled /.icon /.button -->
+						</a> <!-- /.ui /.right /.floated /.tiny /.labeled /.icon /.button -->
 					</td>
 				</tr>
 				<?php endforeach;?>
 			</tbody>
 		</table> <!-- /.ui /.striped /.table -->
+		<a class="ui primary tiny labeled icon button" href="<?php print action('ProjectController@getCreate');?>"><i class="plus icon"></i> Toevoegen</a>
 	<?php else : ?>
 	<div class="ui message">
 		<div class="header">Geen projecten</div>
 		<p>Er zijn helaas nog geen projecten beschikbaar. Wil je er een toevoegen?</p>
-		<a href="<?php print action('ProjectController@getCreate');?>" class="ui primary icon labeled button">
+		<a href="<?php print action('ProjectController@getCreate');?>" class="ui tiny primary icon labeled button">
 			<i class="plus icon"></i>
 			Toevoegen
 		</a> <!-- /.ui /.primary /.icon /.labeled /.button -->

@@ -25,7 +25,7 @@
 
 			<div class="ui center aligned basic segment">
 				<button class="ui gray labeled icon button" type="reset">
-					<i class="remove icon"></i>
+					<i class="undo icon"></i>
 					Opnieuw
 				</button> <!-- /.ui /.gray /.labeled /.icon /.button -->
 				<button class="ui green labeled icon button" type="submit">

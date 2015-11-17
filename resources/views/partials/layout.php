@@ -26,7 +26,6 @@
 			</div> <!-- /.header /.item -->
 			<a class="item" href="<?php print url('/');?>">Dashboard</a>
 			<a class="item" href="<?php print action('ProjectController@getIndex');?>">Projecten</a>
-			<a class="item" href="#">Taken</a>
 			<div class="right menu">
 				<div class="ui dropdown item">
 					<i class="user icon"></i>
