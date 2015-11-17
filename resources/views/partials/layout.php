@@ -39,6 +39,19 @@
 			</div> <!-- /.right /.menu -->
 		</div> <!-- /.ui /.inverted /.large /.top /.fixed /.menu -->
 
+		<?php if(session('message') && session('messageType')) : ?>
+		<div class="ui container">
+			<div class="ui <?php print session('messageType');?> icon message">
+				<?php if(session('messageType') == 'success') : ?>
+				<i class="checkmark icon"></i>
+				<?php else : ?>
+				<i class="warning icon"></i>
+				<?php endif;?>
+				<?php print session('message');?>
+			</div> <!-- /.ui /.<?php print session('messageType');?> /.icon /.message -->
+		</div> <!-- /.ui /.container -->
+		<?php endif;?>
+
 		<?php print $content;?>
 	</body>
 </html>

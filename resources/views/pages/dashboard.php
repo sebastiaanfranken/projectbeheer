@@ -14,6 +14,27 @@
 			Project aanmaken
 		</a> <!-- /.ui /.primary /.labeled /.icon /.button -->
 		<?php else : ?>
+		<table class="ui striped table">
+			<thead>
+				<tr>
+					<th>Projectnaam</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<?php foreach($projects as $project) : ?>
+				<tr>
+					<td>
+						<?php print $project->name;?>
+						<a href="<?php print action('ProjectController@getDetails', [$project->id]);?>" class="ui right floated tiny labeled icon button">
+							<i class="edit icon"></i>
+							Details
+						</a>
+					</td>
+				</tr>
+				<?php endforeach;?>
+			</tbody>
+		</table> <!-- /.ui /.striped /.table -->
 		<?php endif;?>
 	</div> <!-- /.ui /.basic /.segment -->
 
