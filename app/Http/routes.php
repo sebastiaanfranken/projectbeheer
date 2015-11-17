@@ -68,6 +68,12 @@ Route::get('setup', function() {
         $user->email = "sebastiaan@sebastiaanfranken.nl";
         $user->password = Hash::make("@welkom1");
         $user->save();
+
+        $demo = new App\User;
+        $user->name = "Demo Account";
+        $user->email = "demo@local.host";
+        $user->password = Hash::make("@welkom_demo_01");
+        $user->save();
     }
 
     return redirect('/');
