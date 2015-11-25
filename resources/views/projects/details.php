@@ -31,10 +31,35 @@
 
 	<h1 class="ui dividing header">Taken voor <em><?php print $project->name;?></em></h1>
 	<?php if($project->tasks->count() > 0) : ?>
+	<table class="ui striped table">
+		<thead>
+			<tr>
+				<th class="four wide">Naam</th>
+				<th class="four wide">Startdatum</th>
+				<th class="four wide">Einddatum</th>
+				<th class="four wide"></th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<?php foreach($project->tasks as $task) : ?>
+			<tr>
+				<td><?php print $task->name;?></td>
+				<td><?php print (new DateTime($task->start_date))->format('d-m-Y');?></td>
+				<?php if(!is_null($task->end_date)) : ?>
+				<td><?php print (new DateTime($task->end_date))->format('d-m-Y');?></td>
+				<?php else : ?>
+				<td>-</td>
+				<?php endif;?>
+				<td></td>
+			</tr>
+			<?php endforeach;?>
+		</tbody>
+	</table> <!-- /.ui /.striped /.table -->
 	<?php else : ?>
 	<p>Er zijn nog geen taken gekoppeld aan dit project.</p>
 	<?php endif;?>
-	<a class="ui tiny icon labeled primary button">
+	<a class="ui tiny icon labeled primary button" href="<?php print action('TaskController@getCreate', [$project_id]);?>">
 		<i class="plus icon"></i>
 		Taak toevoegen
 	</a> <!-- /.ui /.tiny /.icon /.labeled /.primary /.button -->

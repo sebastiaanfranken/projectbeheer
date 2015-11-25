@@ -141,3 +141,73 @@ Route::group(['middleware' => 'auth', 'prefix' => 'project'], function() {
     ])->where('id', '[0-9]+');
 
 });
+
+/*
+ * Task route group
+ */
+Route::group(['middleware' => 'auth', 'prefix' => 'tasks'], function() {
+
+    /*
+     * HTTP GET request for task listing
+     */
+    Route::get('/', [
+        'uses' => 'TaskController@getIndex'
+    ]);
+
+    /*
+     * HTTP GET request for task create
+     */
+    Route::get('create/{id?}', [
+        'uses' => 'TaskController@getCreate'
+    ])->where('id', '[0-9]+');
+
+    /*
+     * HTTP POST request for task create
+     */
+    Route::post('create', [
+        'uses' => 'TaskController@postCreate'
+    ]);
+
+    /*
+     * HTTP GET request for task update
+     */
+    Route::get('update/{id}', [
+        'uses' => 'TaskController@getUpdate'
+    ])->where('id', '[0-9]+');
+
+    /*
+     * HTTP POST request for task update
+     */
+    Route::post('update', [
+        'uses' => 'TaskController@postUpdate'
+    ]);
+
+    /*
+     * HTTP GET request for task delete
+     */
+    Route::get('delete/{id}', [
+        'uses' => 'TaskController@getDelete'
+    ])->where('id', '[0-9]+');
+
+    /*
+     * HTTP POST request for task delete
+     */
+    Route::get('delete', [
+        'uses' => 'TaskController@postDelete'
+    ]);
+
+    /*
+     * HTTP GET request for task details
+     */
+    Route::get('details/{id}', [
+        'uses' => 'TaskController@getDetails'
+    ])->where('id', '[0-9]+');
+
+    /*
+     * HTTP GET request for tasks belonging to project
+     */
+    Route::get('for-project/{id}', [
+        'uses' => 'TaskController@getTasksForProject'
+    ])->where('id', '[0-9]+');
+
+});

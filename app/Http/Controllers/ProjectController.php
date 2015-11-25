@@ -172,7 +172,8 @@ class ProjectController extends Controller
 	public function getDetails($id)
 	{
 		$subdata = [
-			'project' => Project::find($id)
+			'project' => Project::find($id),
+			'project_id' => $id
 		];
 
 		$data = [

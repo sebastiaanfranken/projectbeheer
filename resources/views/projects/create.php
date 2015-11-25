@@ -1,5 +1,5 @@
 <div class="ui very padded basic segment container">
-	<h1 class="ui dividing header">Projecten</h1>
+	<h1 class="ui dividing header">Project toevoegen</h1>
 	<form method="post" action="<?php print action('ProjectController@postCreate');?>">
 		<?php print csrf_field();?>
 		<div class="ui form">
