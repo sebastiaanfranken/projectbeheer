@@ -18,14 +18,15 @@
 			<thead>
 				<tr>
 					<th>Projectnaam</th>
+					<th class="three wide"></th>
 				</tr>
 			</thead>
 
 			<tbody>
 				<?php foreach($projects as $project) : ?>
 				<tr>
+					<td><?php print $project->name;?></td>
 					<td>
-						<?php print $project->name;?>
 						<a href="<?php print action('ProjectController@getDetails', [$project->id]);?>" class="ui right floated tiny labeled icon button">
 							<i class="edit icon"></i>
 							Details
@@ -52,6 +53,30 @@
 			</a> <!-- /.ui /.primary /.labeled /.icon /.button -->
 			<?php endif;?>
 		<?php else : ?>
+		<table class="ui striped table">
+			<thead>
+				<tr>
+					<th>Taak</th>
+					<th>Project</th>
+					<th class="three wide"></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<?php foreach($tasks as $task) : ?>
+				<tr>
+					<td><?php print $task->name;?></td>
+					<td><?php print $task->project->name;?></td>
+					<td>
+						<a href="<?php print action('TaskController@getDetails', [$task->id]);?>" class="ui right floated tiny labeled icon button">
+							<i class="edit icon"></i>
+							Details
+						</a> <!-- /.ui /.right /.floated /.tiny /.labeled /.icon /.button -->
+					</td>
+				</tr>
+				<?php endforeach;?>
+			</tbody>
+		</table> <!-- /.ui /.striped /.table -->
 		<?php endif;?>
 	</div> <!-- /.ui /.basic /.segment -->
 </div> <!-- /.ui /.container -->

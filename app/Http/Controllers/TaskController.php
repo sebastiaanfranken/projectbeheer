@@ -142,4 +142,34 @@ class TaskController extends Controller
 			'messageType' => 'success'
 		]);
 	}
+
+	public function getUpdate($id)
+	{
+	}
+
+	public function postUpdate(Request $request)
+	{
+	}
+
+	public function getDelete($id)
+	{
+	}
+
+	public function postDelete(Request $request)
+	{
+	}
+
+	public function getDetails($id)
+	{
+		$subdata = [
+			'task' => Task::find($id)
+		];
+
+		$data = [
+			'subtitle' => 'Taak bekijken',
+			'content' => view('tasks/details', $subdata)
+		];
+
+		return view('partials/layout', $data);
+	}
 }
