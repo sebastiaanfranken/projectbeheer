@@ -1,27 +1,43 @@
-## Laravel PHP Framework
+##Webbased project manager
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+This is a simple project manager where you can manage projects with tasks for yourself to keep an eye on one (or more) project(s).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+The code is built using [Laravel](http://www.laravel.com), so if you need to know the nitty gritty on it's installation you should follow it's [Installation guide](http://www.laravel.com/docs/5.1#installation). You should also have a working version of [Composer](http://www.getcomposer.org).
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+### Basic server requirements
+- Apache (any recent version) with a [VirtualHost](https://httpd.apache.org/docs/2.4/vhosts/examples.html) for the system
+- PHP >= 5.5.9 (for more info, see the [Laravel installation guide](http://www.laravel.com/docs/5.1#installation)
+- MySQL/MariaDB/Percona Server
+- Shell access
 
-## Official Documentation
+I'm going to assume you've called your `VirtualHost` **projectmanager.local**
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+### Installation
+I'm assuming your Apache *root folder* is located at */var/www/html/* and that you're going to run the system in a subfolder */var/www/html/projectmanager/*.
 
-## Contributing
+Execute the following commands in that folder (*/var/www/html/projectmanager/*) to install the system.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+	$ git clone https://github.com/sebastiaanfranken/projectbeheer.git /var/www/html/projectmanager
+	$ cd /var/www/html/projectmanager
+	$ composer install
+	
+Once this is complete you should have the system installed, but not yet configured. Make sure to copy the *.env.example* file to *.env* with the following command: 
 
-## Security Vulnerabilities
+	$ cp /var/www/html/projectmanager/.env.example /var/www/html/projectmanager/.env
+	
+When this is done you need to edit */var/www/html/projectmanager/.env* and update the *DB_** settings to match your database settings. Once this is done you'll need to run one last command to migrate (and create) the database tables.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+	$ php /var/www/html/projectmanager/artisan migrate
+	
+If all went well you now have the system up and running. Go to the URL/IP you gave your `VirtualHost` and have fun! 
 
-### License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+### Post install
+Once the **Installation** step is done you'll need to configure the main system user. This can be done by going to the following URL: *http://projectmanager.local/setup*
+This should return you to the login page, where you can login to the system.
+
+### Default credentials
+The system creates one (1) default user, with the following credentials:
+
+- Username: **demo@local.host**
+- Passwowrd: **@welkom_demo_01**
