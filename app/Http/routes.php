@@ -63,12 +63,6 @@ Route::get('setup', function() {
 
     if($users == 0)
     {
-        $user = new App\User;
-        $user->name = "Sebastiaan Franken";
-        $user->email = "sebastiaan@sebastiaanfranken.nl";
-        $user->password = Hash::make("@welkom1");
-        $user->save();
-
         $demo = new App\User;
         $user->name = "Demo Account";
         $user->email = "demo@local.host";
